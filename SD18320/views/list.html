@@ -1,0 +1,55 @@
+<div class="container">
+
+    <h1 class="text-center mt-5 mb-5">Danh sách điện thoại</h1>
+    <a href="#!/phone/add" class="btn btn-success mb-5">Thêm mới</a>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Mã</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Hãng</th>
+                <th scope="col">Giá</th>
+
+                <th scope="col">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="result in list">
+                <th scope="row">{{result.ma}}</th>
+                <td>{{result.ten}}</td>
+                <td>{{result.hang}}</td>
+                <td>{{result.gia}}</td>
+
+                <td>
+
+                    <a href="#!/phone/edit/{{result.id}}" class="btn btn-warning">Sửa</a>
+
+                    <a href="#!/phone/detail/{{result.id}}" class="btn btn-success">Chi tiết</a>
+                    <button ng-click="confirm(result.id)" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Xóa</button>
+
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cảnh báo</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có thực sự muốn xóa?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" ng-click="onDelete()">Xác nhận xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
