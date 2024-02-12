@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-sm-12">
+        <h1 class="text-center">DANH SÁCH GIÀY</h1>
+        <a href="/#!/shoe/add" class="btn btn-success">Thêm</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên</th>
+                    <th>Hãng</th>
+                    <th>Size</th>
+                    <th>Giá</th>
+                    <th>Thao Tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="shoe in shoes">
+                    <td>{{shoe.code}}</td>
+                    <td>{{shoe.name}}</td>
+                    <td>{{shoe.brand}}</td>
+                    <td>{{shoe.size}}</td>
+                    <td>{{shoe.price}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="/#!/shoe/detail/{{shoe.id}}" type="button" class="btn btn-primary">Chi Tiết</a>
+                            <a href="/#!/shoe/delete/{{shoe.id}}" type="button" class="btn btn-danger">Xóa</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

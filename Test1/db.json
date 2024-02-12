@@ -1,0 +1,25 @@
+{
+  "products": [
+    {
+      "id": "2f21",
+      "code": "SP002",
+      "name": "Iphone 7",
+      "brand": "Iphone",
+      "price": 4000000
+    },
+    {
+      "id": "1d45",
+      "code": "SP003",
+      "name": "Iphone 11",
+      "brand": "Iphone",
+      "price": 9000000
+    },
+    {
+      "id": "0ba9",
+      "code": "code",
+      "name": "2ten",
+      "brand": "Iphone",
+      "price": "200000"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+<div class="row">
+    <h1 class="text-center">XÓA GIÀY</h1>
+    <div class="col-sm-12">
+        <form>
+            <div class="mb-3 mt-3">
+              <label class="form-label">ID:</label>
+              <input ng-model="shoe.code" type="text" class="form-control" disabled>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Tên:</label>
+              <input ng-model="shoe.name" type="text" class="form-control" disabled>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Hãng:</label>
+              <select ng-model="shoe.brand" class="form-select" disabled>
+                <option>NVM</option>
+                <option>SANDAL</option>
+                <option>NIKE</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Size:</label>
+              <input ng-model="shoe.size" type="text" class="form-control" disabled>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Giá:</label>
+              <input ng-model="shoe.price" type="text" class="form-control" disabled>
+            </div>
+            <button data-bs-toggle="modal" data-bs-target="#myModal" type="submit" class="btn btn-danger">Xóa</button>
+            <a href="/#!/shoe" type="submit" class="btn btn-primary">Quay Lại</a>
+          </form>
+    </div>
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Xác Nhận</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <!-- Modal body -->
+          <div class="modal-body">
+            Bạn Có Chắc Muốn Xóa Sản Phẩm Này?
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            <button ng-click="handleRemoveShoe()" data-bs-dismiss="modal" type="submit" class="btn btn-success">Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loading-container">
+      <div class="loader"></div>
+    </div>
+</div>
