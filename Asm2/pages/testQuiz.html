@@ -1,0 +1,41 @@
+<div class="container" style="padding: 30px 0;">
+    <div style="display: flex; justify-content: space-between; margin-bottom: 100px;">
+        <span style="font-size: 30px; font-weight: 600;">Quiz</span>
+        <div style="display: flex;">
+            <a style="text-decoration: none;" href="/#!/home">Trang Chủ</a>
+            <span style="margin: 0 5px;">/</span>
+            <span>Quiz</span>
+        </div>
+    </div>
+    <p class="text-center" style="font-weight: 600; font-size: 23px;">{{hours}}:{{minutes}}</p>
+    <div class="quiz-header">
+        <span class="quiz-title">Lập trình Android cơ bản</span>
+        <span ng-click="handleShowQ()" class="quiz-page">{{currentQuestion+1}}/10</span>
+    </div>
+    <div style="margin-top: 30px;">
+        <span style="font-size: 20px; font-weight: 600;">{{questionShow.Text}}</span>
+        <div>
+            <div style="margin-top: 15px;">
+                <input ng-model="inputQuestion" ng-click="onClickQues1(currentQuestion,questionShow.AnswerId,questionShow.Answers[0].id)" type="radio" name="question" value="quest1">
+                <label for="" style="font-size: 16px;">{{questionShow.Answers[0].Text}}</label>
+            </div>
+            <div style="margin-top: 15px;">
+                <input ng-model="inputQuestion" ng-click="onClickQues2(currentQuestion,questionShow.AnswerId,questionShow.Answers[1].id)" type="radio" name="question" value="quest2">
+                <label for="" style="font-size: 16px;">{{questionShow.Answers[1].Text}}</label>
+            </div>
+            <div style="margin-top: 15px;">
+                <input ng-model="inputQuestion" ng-click="onClickQues3(currentQuestion,questionShow.AnswerId,questionShow.Answers[2].id)" type="radio" name="question" value="quest3">
+                <label for="" style="font-size: 16px;">{{questionShow.Answers[2].Text}}</label>
+            </div>
+            <div style="margin-top: 15px;">
+                <input ng-model="inputQuestion" ng-click="onClickQues4(currentQuestion,questionShow.AnswerId,questionShow.Answers[3].id)" type="radio" name="question" value="quest4">
+                <label for="" style="font-size: 16px;">{{questionShow.Answers[3].Text}}</label>
+            </div>
+        </div>
+        <div style="margin-top: 20px;">
+            <button ng-click="handleDoneTest()" ng-hide="doneTest" class="btn btn-primary">Submit</button>
+            <button ng-click="handlePreQuestion()" class="btn btn-primary">Previous</button>
+            <button ng-click="handleNextQuestion()" class="btn btn-primary">Next</button>
+        </div>
+    </div>
+</div>

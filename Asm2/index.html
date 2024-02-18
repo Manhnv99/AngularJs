@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js "
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r "
+        crossorigin="anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js "
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+ "
+        crossorigin="anonymous "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.3/angular-route.min.js"></script>
+    <script src="./controllers/HomeController.js"></script>
+    <script src="./controllers/LoginController.js"></script>
+    <script src="./controllers/RegisterController.js"></script>
+    <script src="./controllers/ResetPassword.js"></script>
+    <script src="./controllers/ProfileController.js"></script>
+    <script src="./controllers/TestQuizController.js"></script>
+    <link rel="stylesheet" href="./pages/style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body ng-app="myApp">
+    <header ng-controller="myController">
+        <div class="container header-container">
+            <div class="header-logo">
+                <span>NVMSTUDY</span>
+            </div>
+            <div class="header-nav">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <span class="nav-link home" ng-click="handleGoHomePage()">Trang Chủ</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Giới Thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Khóa Học</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Liên Hệ</a>
+                    </li>
+                    <li ng-hide="onLogin" class="nav-item">
+                        <a class="nav-link" href="/#!/login">Đăng Nhập</a>
+                    </li>
+                    <li ng-hide="onLogin" class="nav-item">
+                        <a class="nav-link" href="/#!/register">Đăng Ký</a>
+                    </li>
+                    <li ng-hide="!onLogin" class="nav-item">
+                        <div class="dropdown">
+                            <span class="nav-link home" data-bs-toggle="dropdown">
+                                Tài Khoản
+                            </span>
+                            <ul class="dropdown-menu">
+                              <li><span ng-click="handleLogout()" class="dropdown-item">Đăng Xuất</span></li>
+                              <li><span ng-click="handleResetPassword()" class="dropdown-item">Đổi Mật Khẩu</span></li>
+                              <li><span ng-click="handleRedirectProfile()" class="dropdown-item">Cập Nhật Tài Khoản</span></li>
+                            </ul>
+                          </div>
+                    </li>
+                    <li class="header-social">
+                        <a class="nav-link" href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a class="nav-link" href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a class="nav-link" href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div style="margin-top: 60px;" ng-view></div>
+    <script>
+        var app = angular.module("myApp", ["ngRoute"]);
+        app.config(function ($routeProvider) {
+            $routeProvider
+                .when("/home", {
+                    templateUrl: "./pages/home.html",
+                    controller: HomeController
+                })
+                .when("/login", {
+                    templateUrl: "./pages/login.html",
+                    controller: LoginController
+                })
+                .when("/register", {
+                    templateUrl: "./pages/register.html",
+                    controller: RegisterController
+                })
+                .when("/resetPassword", {
+                    templateUrl: "./pages/resetPassword.html",
+                    controller: ResetPasswordController
+                })
+                .when("/profile", {
+                    templateUrl: "./pages/profile.html",
+                    controller: ProfileController
+                })
+                .when("/testQuiz/:id", {
+                    templateUrl: "./pages/testQuiz.html",
+                    controller: TestQuizController
+                })
+                .otherwise({
+                    redirectTo: '/home'
+                })
+        })
+    </script>
+    <script>
+        app.controller("myController",function($scope,$http,$rootScope,$location){
+            console.log(localStorage.getItem("account"));
+            $rootScope.onLogin=false
+            $rootScope.stateLogin=()=>{
+                if(localStorage.getItem("account")===null || localStorage.getItem("account")===""){
+                    $rootScope.onLogin=false
+                }else{
+                    $rootScope.onLogin=true
+                }
+            }
+            $scope.handleGoHomePage=()=>{
+                if(localStorage.getItem("account")===null || localStorage.getItem("account")===""){
+                    $location.path("/login")
+                }else{
+                    $location.path("/home")
+                }
+            }
+            $scope.handleLogout=()=>{
+                console.log(localStorage.getItem("account"));
+                localStorage.removeItem("account");
+                console.log(localStorage.getItem("account"));
+                $scope.stateLogin();
+                $scope.handleGoHomePage();
+            }
+            $scope.handleResetPassword=()=>{
+                $location.path("/resetPassword")
+            }
+            $scope.handleRedirectProfile=()=>{
+                $location.path("/profile")
+            }
+            $rootScope.stateLogin();
+            $scope.handleGoHomePage();
+        })
+    </script>
+</body>
+
+</html>

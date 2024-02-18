@@ -16,13 +16,13 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="./components/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.3/angular-route.min.js"></script>
-        <script src="./controllers/AddController.js"></script>
-        <script src="./controllers/DetailController.js"></script>
-        <script src="./controllers/ListController.js"></script>
-        <script src="./controllers/DeleteController.js"></script>
+        <script src="./components/controllers/AddController.js"></script>
+        <script src="./components/controllers/DetailController.js"></script>
+        <script src="./components/controllers/ListController.js"></script>
+        <script src="./components/controllers/DeleteController.js"></script>
     </head>
 
     <body>
@@ -34,19 +34,19 @@
                 app.config(function($routeProvider){
                     $routeProvider
                         .when("/shoe",{
-                            templateUrl:"./pages/listShoe.html",
+                            templateUrl:"./components/pages/listShoe.html",
                             controller:ListController
                         })
                         .when("/shoe/add",{
-                            templateUrl:"./pages/addShoe.html",
+                            templateUrl:"./components/pages/addShoe.html",
                             controller:AddController
                         })
                         .when("/shoe/detail/:id",{
-                            templateUrl:"./pages/detailShoe.html",
+                            templateUrl:"./components/pages/detailShoe.html",
                             controller:DetailController
                         })
                         .when("/shoe/delete/:id",{
-                            templateUrl:"./pages/deleteShoe.html",
+                            templateUrl:"./components/pages/deleteShoe.html",
                             controller:DeleteController
                         })
                         .otherwise({
